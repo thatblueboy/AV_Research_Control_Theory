@@ -13,7 +13,7 @@ print("Printing number of devices", robot.getNumberOfDevices())
 
 
 
-lidar = Lidar("Velodyne Puck")
+lidar = Lidar("Velodyne Puck(1)")
 print("Printing lidar", lidar)
 lidar.enable(100)
 lidar.enablePointCloud()
@@ -37,13 +37,14 @@ class processLidarData():
                points[i][1] = p.y
                points[i][2] = p.z
 
-        print(type(points))
-        # print(points)
+        # print(type(points))
+        print(points)
 
         pcd = o3d.geometry.PointCloud()
         pcd.points = o3d.utility.Vector3dVector(points)
         pcd = pcd.remove_non_finite_points()
         print(pcd.points)
+        o3d.io.write_point_cloud("point_cloud.ply", pcd)
 
         self.vis.clear_geometries()
         self.vis.add_geometry(pcd)
