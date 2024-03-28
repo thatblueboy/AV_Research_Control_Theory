@@ -1,1 +1,0 @@
-# arr = [inf, inf, -inf]
